@@ -12,5 +12,9 @@ public class ArrayTest {
         }
         array.addFirst(51);
         System.out.println(array);
+        array.addLast(8);
+        System.out.println(array);
+        array.removeAllElement(8);
+        System.out.println(array);
     }
 }

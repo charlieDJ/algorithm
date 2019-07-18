@@ -230,8 +230,8 @@ public class Array<E> {
      * @return
      */
     public boolean removeAllElement(E e) {
-        int index = find(e);
         for (int i = 0; i < size; i++) {
+            int index = find(e);
             if (index != -1) {
                 remove(index);
             }
