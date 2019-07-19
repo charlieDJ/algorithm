@@ -69,12 +69,9 @@ public class LinkedList<E> {
 
         Node prev = dummyHead;
         for (int i = 0; i < index; i++) {
-            // 确定添加元素e的prev
+            // 找到添加元素e的prev
             prev = prev.next;
         }
-        // Node node = new Node(e);
-        // node.next = head;
-        // head = node;
         prev.next = new Node(e, prev.next);
         size++;
     }
@@ -176,11 +173,6 @@ public class LinkedList<E> {
     public String toString() {
         StringBuilder res = new StringBuilder();
 
-        // Node cur = dummyHead.next;
-        // while(cur != null){
-        // res.append(cur + "->");
-        // cur = cur.next;
-        // }
         for (Node cur = dummyHead.next; cur != null; cur = cur.next) {
             res.append(cur).append("->");
         }
@@ -225,9 +217,9 @@ public class LinkedList<E> {
     }
 
     /**
-     * 从链表中删除元素e
+     * 从链表中删除元素
      *
-     * @param e
+     * @param e 需要删除的元素
      */
     public void removeElement(E e) {
 
@@ -236,6 +228,7 @@ public class LinkedList<E> {
             if (prev.next.e.equals(e)) {
                 break;
             }
+            // 向后推进
             prev = prev.next;
         }
 

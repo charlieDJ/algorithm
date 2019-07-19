@@ -2,6 +2,9 @@ package algorithm.sort;
 
 import java.util.Arrays;
 
+/**
+ * 快速排序
+ */
 public class Quick {
 
     public static void main(String[] args) {

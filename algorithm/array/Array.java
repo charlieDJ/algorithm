@@ -81,7 +81,7 @@ public class Array<E> {
         }
         // 在数据索引位置添加元素e
         data[index] = e;
-
+        // 维护数组大小
         size++;
     }
 
@@ -145,7 +145,6 @@ public class Array<E> {
      */
     public boolean contains(E e) {
         for (int i = 0; i < size; i++) {
-            // equals是值比较，==是引用比较
             if (data[i].equals(e)) {
                 return true;
             }
@@ -180,13 +179,15 @@ public class Array<E> {
         }
 
         E ret = data[index];
+        // 从给定索引位置往后位移一位
         for (int i = index + 1; i < size; i++) {
             data[i - 1] = data[i];
         }
+        // 维护数组大小
         size--;
-        // loitering objects != memory leak 删除size指向的引用。java回收机制就能
+        // 及时清除数据
         data[size] = null;
-        // 当我们使用泛型时，数组中存储的时一个一个的引用。当数组中还存在着一个对象的引用的话，就不会被java自动回收机制所回收
+        // 减少容量
         if (size == data.length / 4 && data.length / 2 != 0) {
             resize(data.length / 2);
         }
