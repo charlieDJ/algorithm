@@ -45,8 +45,8 @@ public class BST<E extends Comparable<E>> {
      * 向以node为根的二分搜索树中插入元素e，递归算法
      * 返回插入新节点后二分搜索树的根
      *
-     * @param node
-     * @param e
+     * @param node 根节点
+     * @param e    元素
      * @return
      */
     private Node add(Node node, E e) {
@@ -221,6 +221,7 @@ public class BST<E extends Comparable<E>> {
     /**
      * 删除掉以node为根的二分搜索树中值为e的节点, 递归算法
      * 返回删除节点后新的二分搜索树的根
+     *
      * @param node
      * @param e
      * @return
