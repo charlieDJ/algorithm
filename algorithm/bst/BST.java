@@ -172,7 +172,7 @@ public class BST<E extends Comparable<E>> {
      */
     private Node removeMin(Node node) {
         // 处理递归到底的情况。
-        //我们先把该节点的右子树节点保存，然后删除该右子树节点，最后把右子树节点返回即可
+        // 我们先把该节点的右子树节点保存，然后删除该右子树节点，最后把右子树节点返回即可
         if (node.left == null) {
             Node rightNode = node.right;
             //左节点为空后，让右子树节点也为空，相当于脱离了树
@@ -181,7 +181,7 @@ public class BST<E extends Comparable<E>> {
             //返回右子树是为了后面的绑定操作
             return rightNode;
         }
-        //没有递归到底的情况，那么就递归调用其左子树，这个调用的过程会返回被删除节点的右子树，将返回的右子树重新绑定到上一层的node的左节点上，相当于彻底删除了那个元素
+        // 没有递归到底的情况，那么就递归调用其左子树，这个调用的过程会返回被删除节点的右子树，将返回的右子树重新绑定到上一层的node的左节点上，相当于彻底删除了那个元素
         node.left = removeMin(node.left);
         // 删除后，根节点依然是node，返回即可
         return node;

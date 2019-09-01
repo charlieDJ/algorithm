@@ -179,13 +179,13 @@ public class Array<E> {
         }
 
         E ret = data[index];
-        // 从给定索引位置往后位移一位
+        // 从给定索引位置往前位移一位
         for (int i = index + 1; i < size; i++) {
             data[i - 1] = data[i];
         }
         // 维护数组大小
         size--;
-        // 及时清除数据
+        // 最后一位，及时清除数据
         data[size] = null;
         // 减少容量
         if (size == data.length / 4 && data.length / 2 != 0) {
