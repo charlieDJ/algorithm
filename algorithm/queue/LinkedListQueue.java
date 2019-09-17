@@ -52,11 +52,15 @@ public class LinkedListQueue<E> implements Queue<E> {
 
     @Override
     public void enqueue(E e) {
+        // tail 为空，说明为空链表
         if (tail == null) {
             tail = new Node(e);
+            // 空链表，首尾一致
             head = tail;
+            // 非空链表
         } else {
             tail.next = new Node(e);
+            // 更新 tail
             tail = tail.next;
         }
         size++;
@@ -69,8 +73,11 @@ public class LinkedListQueue<E> implements Queue<E> {
         }
 
         Node retNode = head;
+        // 设置新的head
         head = head.next;
+        // retNode.next(以前的head.next)脱离链表
         retNode.next = null;
+        // 更新 tail
         if (head == null) {
             tail = null;
         }
