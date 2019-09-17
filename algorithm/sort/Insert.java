@@ -27,13 +27,14 @@ public class Insert {
                     break;
                 }
             }
-            // 插入数据
+            // 插入数据(覆盖腾出的位置)
             a[j + 1] = value;
         }
     }
 
     public static void main(String[] args) {
-        int[] a = {11, 2, 9, 7, 8, 10};
+//        int[] a = {11, 2, 9, 7, 8, 10};
+        int[] a = {2,1};
         sort(a, a.length);
         System.out.println(Arrays.toString(a));
     }
