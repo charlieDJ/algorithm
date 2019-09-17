@@ -72,7 +72,7 @@ public class Array<E> {
             resize(2 * data.length);
         }
         // 从索引位置往后推移
-        // 索引从0开始，size-1 就是该数组内最大的索引值
+        // 索引从0开始，size-1 就是该数组内最大的索引值，从后往前推移，达到不覆盖前面值的效果
         // 只要数组索引值大于或等于传入的索引值，就会进入循环体
         // 假如传入的index的值为0，那么就是从头插入元素，数组从索引为0的位置往后移动
         for (int i = size - 1; i >= index; i--) {
@@ -179,7 +179,7 @@ public class Array<E> {
         }
 
         E ret = data[index];
-        // 从给定索引位置往前位移一位
+        // 从给定索引位置往前位移一位，从前往后推移，从而达到后面覆盖前面的效果
         for (int i = index + 1; i < size; i++) {
             data[i - 1] = data[i];
         }

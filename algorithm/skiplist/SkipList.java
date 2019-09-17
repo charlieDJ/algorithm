@@ -3,9 +3,7 @@ package algorithm.skiplist;
 import java.util.Random;
 
 /**
- *
- *  @author：ZHENG
- * 跳表的一种实现方法。
+ * @author：ZHENG 跳表的一种实现方法。
  * 跳表中存储的是正整数，并且存储的是不重复的。
  */
 public class SkipList {
@@ -14,7 +12,10 @@ public class SkipList {
 
     private int levelCount = 1;
 
-    private Node head = new Node();  // 带头链表
+    /**
+     * 带头链表
+     */
+    private Node head = new Node();
 
     private Random r = new Random();
 
@@ -38,7 +39,7 @@ public class SkipList {
         Node newNode = new Node();
         newNode.data = value;
         newNode.maxLevel = level;
-        Node update[] = new Node[level];
+        Node[] update = new Node[level];
         for (int i = 0; i < level; ++i) {
             update[i] = head;
         }
@@ -49,17 +50,18 @@ public class SkipList {
             while (p.forwards[i] != null && p.forwards[i].data < value) {
                 p = p.forwards[i];
             }
-            update[i] = p;// use update save node in search path
+            // use update save node in search path
+            update[i] = p;
         }
 
-        // in search path node next node become new node forwords(next)
+        // in search path node next node become new node forwards(next)
         for (int i = 0; i < level; ++i) {
             newNode.forwards[i] = update[i].forwards[i];
             update[i].forwards[i] = newNode;
         }
 
         // update node hight
-        if (levelCount < level){
+        if (levelCount < level) {
             levelCount = level;
         }
     }
@@ -83,7 +85,11 @@ public class SkipList {
         }
     }
 
-    // 随机 level 次，如果是奇数层数 +1，防止伪随机
+    /**
+     * 随机 level 次，如果是奇数层数 +1，防止伪随机
+     *
+     * @return
+     */
     private int randomLevel() {
         int level = 1;
         for (int i = 1; i < MAX_LEVEL; ++i) {
