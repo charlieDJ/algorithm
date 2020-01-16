@@ -1,4 +1,4 @@
-package array;
+package algorithm.array;
 
 /**
  * @author dengjia

@@ -1,4 +1,4 @@
-package list;
+package algorithm.list;
 
 /**
  * @author dengjia

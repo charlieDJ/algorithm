@@ -1,3 +1,5 @@
+package thread;
+
 public class ConditionApplication {
 
     private static Runnable getThreadA(final ConditionService service) {

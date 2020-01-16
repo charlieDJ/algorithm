@@ -1,4 +1,4 @@
-package stack;
+package algorithm.stack;
 
 import algorithm.list.LinkedList;
 

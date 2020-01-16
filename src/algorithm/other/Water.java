@@ -1,4 +1,4 @@
-package other;
+package algorithm.other;
 
 /**
  * @author dengjia

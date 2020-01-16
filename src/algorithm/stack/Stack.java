@@ -1,4 +1,4 @@
-package stack;
+package algorithm.stack;
 
 /**
  * @author dengjia

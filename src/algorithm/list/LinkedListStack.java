@@ -1,5 +1,4 @@
-package list;
-
+package algorithm.list;
 
 import algorithm.stack.Stack;
 

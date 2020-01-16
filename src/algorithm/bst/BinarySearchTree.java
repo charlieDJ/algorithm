@@ -1,9 +1,12 @@
-package bst;
+package algorithm.bst;
 
 /**
  * @author dengjia on 2020/1/16
  */
 public class BinarySearchTree {
+    /**
+     * 根节点
+     */
     private Node tree;
 
     public Node find(int data) {
@@ -17,6 +20,7 @@ public class BinarySearchTree {
     }
 
     public void insert(int data) {
+        // 如果根节点为空，新建根节点
         if (tree == null) {
             tree = new Node(data);
             return;
@@ -48,6 +52,7 @@ public class BinarySearchTree {
             if (data > p.data) p = p.right;
             else p = p.left;
         }
+        // 此时的p节点就是要删除的节点，pp是将要删除节点的父节点
         if (p == null) return; // 没有找到
 
         // 要删除的节点有两个子节点
@@ -58,8 +63,13 @@ public class BinarySearchTree {
                 minPP = minP;
                 minP = minP.left;
             }
-            p.data = minP.data; // 将minP的数据替换到p中
+            // 此时minP是最小节点，minPP是最小节点的父节点
+            // 我们用后继节点替换到要删除节点的位置。 然后就变成删除后继节点的问题了。为了逻辑统一 代码书写简洁。我们把后继节点赋给了p
+            // 将minP的数据替换到p中
+            p.data = minP.data;
+            // p节点的引用指向了最小节点
             p = minP; // 下面就变成了删除minP了
+            // pp 指向最小节点的父节点
             pp = minPP;
         }
 

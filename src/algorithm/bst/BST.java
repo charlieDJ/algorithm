@@ -1,4 +1,4 @@
-package bst;
+package algorithm.bst;
 
 /**
  * @author dengjia

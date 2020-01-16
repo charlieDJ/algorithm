@@ -1,3 +1,5 @@
+package thread;
+
 public class Produce1 {
     private static Integer count = 0;
     private static final Integer FULL = 10;
