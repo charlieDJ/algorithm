@@ -8,7 +8,7 @@ import java.util.TreeSet;
 /**
  * 只处理简单图
  */
-public class AdjSet {
+public class Graph {
     /**
      * 顶点
      */
@@ -28,7 +28,7 @@ public class AdjSet {
      * @param filename 文件名称
      */
     @SuppressWarnings("unchecked")
-    public AdjSet(String filename) {
+    public Graph(String filename) {
 
         final File file = new File(filename);
 
@@ -139,7 +139,7 @@ public class AdjSet {
     }
 
     public static void main(String[] args) {
-        final AdjSet adjSet = new AdjSet("g.txt");
-        System.out.println(adjSet);
+        final Graph graph = new Graph("g1.txt");
+        System.out.println(graph);
     }
 }

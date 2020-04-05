@@ -2,13 +2,13 @@ package algorithm.graph;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.Scanner;
-import java.util.TreeSet;
 
 /**
  * 只处理简单图
  */
-public class AdjSet {
+public class AdjHashSet {
     /**
      * 顶点
      */
@@ -18,9 +18,9 @@ public class AdjSet {
      */
     private int E;
     /**
-     * 用红黑树表示图
+     * 用哈希表表示图
      */
-    private TreeSet<Integer>[] adj;
+    private HashSet<Integer>[] adj;
 
     /**
      * 从文件中读取，填充到数组中
@@ -28,7 +28,7 @@ public class AdjSet {
      * @param filename 文件名称
      */
     @SuppressWarnings("unchecked")
-    public AdjSet(String filename) {
+    public AdjHashSet(String filename) {
 
         final File file = new File(filename);
 
@@ -37,10 +37,10 @@ public class AdjSet {
             if (V < 0) {
                 throw new IllegalArgumentException("vertex must be non-negative!");
             }
-            adj = new TreeSet[V];
+            adj = new HashSet[V];
             // 每一个顶点对应一条链表
             for (int i = 0; i < V; i++) {
-                adj[i] = new TreeSet<>();
+                adj[i] = new HashSet<>();
             }
             E = scanner.nextInt();
             if (E < 0) {
@@ -56,7 +56,6 @@ public class AdjSet {
                     throw new IllegalArgumentException("Self loop is detected");
                 }
                 // 去除平行边
-                // 修改为红黑树自后，contains和add方法的时间复杂度变为了 O(logN)
                 if (adj[a].contains(b)) {
                     throw new IllegalArgumentException("Parallel edge is detected");
                 }
@@ -139,7 +138,7 @@ public class AdjSet {
     }
 
     public static void main(String[] args) {
-        final AdjSet adjSet = new AdjSet("g.txt");
+        final AdjHashSet adjSet = new AdjHashSet("g.txt");
         System.out.println(adjSet);
     }
 }
