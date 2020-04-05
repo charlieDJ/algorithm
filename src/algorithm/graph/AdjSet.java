@@ -2,14 +2,13 @@ package algorithm.graph;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Scanner;
+import java.util.TreeSet;
 
 /**
  * 只处理简单图
  */
-public class AdjList {
+public class AdjSet {
     /**
      * 顶点
      */
@@ -19,9 +18,9 @@ public class AdjList {
      */
     private int E;
     /**
-     * 用链表数组表示图
+     * 用红黑树表示图
      */
-    private LinkedList<Integer>[] adj;
+    private TreeSet<Integer>[] adj;
 
     /**
      * 从文件中读取，填充到数组中
@@ -29,7 +28,7 @@ public class AdjList {
      * @param filename 文件名称
      */
     @SuppressWarnings("unchecked")
-    public AdjList(String filename) {
+    public AdjSet(String filename) {
 
         final File file = new File(filename);
 
@@ -38,10 +37,10 @@ public class AdjList {
             if (V < 0) {
                 throw new IllegalArgumentException("vertex must be non-negative!");
             }
-            adj = new LinkedList[V];
+            adj = new TreeSet[V];
             // 每一个顶点对应一条链表
             for (int i = 0; i < V; i++) {
-                adj[i] = new LinkedList<>();
+                adj[i] = new TreeSet<>();
             }
             E = scanner.nextInt();
             if (E < 0) {
@@ -57,6 +56,7 @@ public class AdjList {
                     throw new IllegalArgumentException("Self loop is detected");
                 }
                 // 去除平行边
+                // 修改为红黑树自后，contains和add方法的时间复杂度变为了 O(logN)
                 if (adj[a].contains(b)) {
                     throw new IllegalArgumentException("Parallel edge is detected");
                 }
@@ -94,7 +94,7 @@ public class AdjList {
      * @param v 顶点v
      * @return 与顶点v相邻的顶点
      */
-    public List<Integer> adj(int v) {
+    public Iterable<Integer> adj(int v) {
         validateVertex(v);
         return adj[v];
     }
@@ -104,7 +104,8 @@ public class AdjList {
      * @return 顶点v的度（相邻边）
      */
     public int degree(int v) {
-        return adj(v).size();
+        validateVertex(v);
+        return adj[v].size();
     }
 
     /**
@@ -138,7 +139,7 @@ public class AdjList {
     }
 
     public static void main(String[] args) {
-        final AdjList adjList = new AdjList("g.txt");
+        final AdjSet adjList = new AdjSet("g.txt");
         System.out.println(adjList);
     }
 }
