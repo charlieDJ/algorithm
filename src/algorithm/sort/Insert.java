@@ -7,34 +7,31 @@ import java.util.Arrays;
  */
 public class Insert {
 
-    public static void sort(int[] a, int n) {
+    public static void sort(int[] arr, int n) {
         if (n <= 1) {
             return;
         }
-
+        // 第一个元素不动，从第二个元素开始，对于插入排序来说，第一个元素本身就有序，第二个元素向前比较
         for (int i = 1; i < n; i++) {
-            // 保存当前值
-            int value = a[i];
-            // 上个索引
-            int j = i - 1;
-            // 往前查找需要插入的位置
-            for (; j >= 0; j--) {
-                // 数据向后搬移，直到找到的值小于当前值
-                if (a[j] > value) {
-                    a[j + 1] = a[j];
-                    // 退出循环后的j+1就是需要插入的位置（腾出来的位置）
+            // 往前查找需要插入的位置，寻找数组合适的插入位置
+            // j 为什么不等于 0 呢？ 这是因为 j 这个索引的元素需要与索引 0 对应的元素做比较，所以不能等于 0，最多考察到 j=1
+            for (int j = i; j > 0; j--) {
+                // 如果当前元素比前一个元素小，需要交换
+                if (arr[j] < arr[j - 1]) {
+                    // 交换元素
+                    int temp = arr[j - 1];
+                    arr[j - 1] = arr[j];
+                    arr[j] = temp;
                 } else {
                     break;
                 }
             }
-            // 插入数据(覆盖腾出的位置)
-            a[j + 1] = value;
         }
     }
 
     public static void main(String[] args) {
-//        int[] a = {11, 2, 9, 7, 8, 10};
-        int[] a = {2,1};
+        int[] a = {11, 2, 9, 7, 8, 10};
+//        int[] a = {2, 1};
         sort(a, a.length);
         System.out.println(Arrays.toString(a));
     }
