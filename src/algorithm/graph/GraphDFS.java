@@ -69,8 +69,8 @@ public class GraphDFS {
     public static void main(String[] args) {
         final Graph G = new Graph("g1.txt");
         final GraphDFS graphDFS = new GraphDFS(G);
-        System.out.println(graphDFS.pre());
-        System.out.println(graphDFS.post());
+        System.out.println("前序遍历：" + graphDFS.pre());
+        System.out.println("后序遍历：" + graphDFS.post());
     }
 
 }

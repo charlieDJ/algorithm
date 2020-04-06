@@ -6,7 +6,7 @@ import java.util.Scanner;
 import java.util.TreeSet;
 
 /**
- * 只处理简单图
+ * 只处理简单图，无权无向图
  */
 public class Graph {
     /**
@@ -113,7 +113,7 @@ public class Graph {
      *
      * @param v 顶点
      */
-    private void validateVertex(int v) {
+    public void validateVertex(int v) {
         if (v < 0 || v > V) {
             throw new IllegalArgumentException("vertex " + v + " is invalid");
         }
