@@ -50,6 +50,7 @@ public class SingleSourcePath {
      */
     private void dfs(int v, int parent) {
         visited[v] = true;
+        // 保存父节点，寻找路径是从目标点到源点这样的方式
         pre[v] = parent;
         //遍历与此顶点相邻的顶点
         for (Integer w : G.adj(v)) {
@@ -78,15 +79,18 @@ public class SingleSourcePath {
      */
     public Iterable<Integer> path(int t) {
         final ArrayList<Integer> res = new ArrayList<>();
+        // 如果目标点和源点不能联通，说明不属于一个联通分量，它们之间没有路径
         if (!isConnectedTo(t)) {
             return res;
         }
         int cur = t;
         while (cur != s) {
             res.add(cur);
+            // 从后往前寻找路径
             cur = pre[cur];
         }
         res.add(s);
+        // 反转找到的路径，就是 s -> t 之间的路径
         Collections.reverse(res);
         return res;
     }

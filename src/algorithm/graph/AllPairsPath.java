@@ -5,6 +5,9 @@ package algorithm.graph;
  */
 public class AllPairsPath {
 
+    /**
+     * 图
+     */
     private Graph G;
     /**
      * 定义 SingleSourcePath 数组，存储每一个顶点到另外顶点之间的路径
