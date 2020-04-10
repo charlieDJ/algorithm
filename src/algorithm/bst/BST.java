@@ -33,7 +33,7 @@ public class BST<E extends Comparable<E>> {
     }
 
     /**
-     * 向二分搜索树中添加新的元素e
+     * 向二分搜索树中添加新的元素 e
      *
      * @param e 元素e
      */
@@ -42,12 +42,12 @@ public class BST<E extends Comparable<E>> {
     }
 
     /**
-     * 向以node为根的二分搜索树中插入元素e，递归算法
+     * 向以node为根的二分搜索树中插入元素 e，递归算法
      * 返回插入新节点后二分搜索树的根
      *
      * @param node 根节点
      * @param e    元素
-     * @return
+     * @return 根节点
      */
     private Node add(Node node, E e) {
         if (node == null) {
@@ -56,11 +56,13 @@ public class BST<E extends Comparable<E>> {
         }
 
         if (e.compareTo(node.e) < 0) {
+            // 因为是递归调用，要拿一个元素去借住这个变化。
+            // 如果右侧的 node.left 为空，递归下去后返回 node 的左子节点
             node.left = add(node.left, e);
         } else if (e.compareTo(node.e) > 0) {
             node.right = add(node.right, e);
         }
-
+        // 递归后，node 没有变化
         return node;
     }
 
@@ -68,7 +70,7 @@ public class BST<E extends Comparable<E>> {
      * 看二分搜索树中是否包含元素e
      *
      * @param e 元素
-     * @return boolean
+     * @return true：包含元素
      */
     public boolean contains(E e) {
         return contains(root, e);
@@ -77,9 +79,9 @@ public class BST<E extends Comparable<E>> {
     /**
      * 看以node为根的二分搜索树中是否包含元素e, 递归算法
      *
-     * @param node
-     * @param e
-     * @return
+     * @param node 根节点
+     * @param e    元素
+     * @return true：包含元素e
      */
     private boolean contains(Node node, E e) {
 
@@ -91,16 +93,21 @@ public class BST<E extends Comparable<E>> {
             return true;
         } else if (e.compareTo(node.e) < 0) {
             return contains(node.left, e);
-            // e.compareTo(node.e) > 0
         } else {
+            // e.compareTo(node.e) > 0
             return contains(node.right, e);
         }
+    }
+
+    // 从二分搜索树中删除元素为e的节点
+    public void remove(E e){
+        root = remove(root, e);
     }
 
     /**
      * 寻找二分搜索树的最小元素
      *
-     * @return
+     * @return 最小节点
      */
     public E minimum() {
         if (size == 0) {
@@ -114,8 +121,8 @@ public class BST<E extends Comparable<E>> {
     /**
      * 返回以node为根的二分搜索树的最小值所在的节点
      *
-     * @param node
-     * @return
+     * @param node 节点
+     * @return 最小节点
      */
     private Node minimum(Node node) {
         if (node.left == null) {
@@ -127,7 +134,7 @@ public class BST<E extends Comparable<E>> {
     /**
      * 寻找二分搜索树的最大元素
      *
-     * @return
+     * @return 最大节点
      */
     public E maximum() {
         if (size == 0) {
@@ -140,8 +147,8 @@ public class BST<E extends Comparable<E>> {
     /**
      * 返回以node为根的二分搜索树的最大值所在的节点
      *
-     * @param node
-     * @return
+     * @param node 节点
+     * @return 最大节点
      */
     private Node maximum(Node node) {
         if (node.right == null) {
@@ -154,7 +161,7 @@ public class BST<E extends Comparable<E>> {
     /**
      * 从二分搜索树中删除最小值所在节点, 返回最小值
      *
-     * @return
+     * @return 最小元素
      */
     public E removeMin() {
         E ret = minimum();
@@ -167,8 +174,8 @@ public class BST<E extends Comparable<E>> {
      * 删除掉以node为根的二分搜索树中的最小节点
      * 返回删除节点后新的二分搜索树的根
      *
-     * @param node
-     * @return
+     * @param node 节点
+     * @return 删除的节点
      */
     private Node removeMin(Node node) {
         // 处理递归到底的情况。
@@ -190,7 +197,7 @@ public class BST<E extends Comparable<E>> {
     /**
      * 从二分搜索树中删除最大值所在节点
      *
-     * @return
+     * @return 最大元素
      */
     public E removeMax() {
         E ret = maximum();
@@ -202,8 +209,8 @@ public class BST<E extends Comparable<E>> {
      * 删除掉以node为根的二分搜索树中的最大节点
      * 返回删除节点后新的二分搜索树的根
      *
-     * @param node
-     * @return
+     * @param node 节点
+     * @return 最大节点
      */
     private Node removeMax(Node node) {
 
@@ -222,8 +229,8 @@ public class BST<E extends Comparable<E>> {
      * 删除掉以node为根的二分搜索树中值为e的节点, 递归算法
      * 返回删除节点后新的二分搜索树的根
      *
-     * @param node
-     * @param e
+     * @param node 根节点
+     * @param e    元素
      * @return
      */
     private Node remove(Node node, E e) {
