@@ -3,7 +3,8 @@ package algorithm.skiplist;
 import java.util.Random;
 
 /**
- * @author：ZHENG 跳表的一种实现方法。
+ * @author：ZHENG
+ * 跳表的一种实现方法。
  * 跳表中存储的是正整数，并且存储的是不重复的。
  */
 public class SkipList {
