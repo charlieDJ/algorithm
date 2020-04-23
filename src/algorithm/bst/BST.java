@@ -1,5 +1,10 @@
 package algorithm.bst;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Stack;
+
 /**
  * @author dengjia
  * @date 2019/7/22 17:43
@@ -13,6 +18,15 @@ public class BST<E extends Comparable<E>> {
             this.e = e;
             left = null;
             right = null;
+        }
+
+        @Override
+        public String toString() {
+            return "Node{" +
+                    "e=" + e +
+                    ", left=" + left +
+                    ", right=" + right +
+                    '}';
         }
     }
 
@@ -74,6 +88,143 @@ public class BST<E extends Comparable<E>> {
      */
     public boolean contains(E e) {
         return contains(root, e);
+    }
+
+    /**
+     * 中序遍历
+     */
+    public void inOrder() {
+        inOrder(root);
+    }
+
+    private void inOrder(Node node) {
+        if (node == null) {
+            return;
+        }
+        inOrder(node.left);
+        System.out.println(node.e);
+        inOrder(node.right);
+    }
+
+    public void inOrderNormal() {
+        inOrderNormal(root);
+    }
+
+    /**
+     * 前序遍历
+     */
+    public void preOrder() {
+        preOrder(root);
+    }
+
+    private void preOrder(Node node) {
+        if (node == null) {
+            return;
+        }
+        System.out.println(node.e);
+        preOrder(node.left);
+        preOrder(node.right);
+    }
+
+    public void postOrder() {
+        postOrder(root);
+    }
+
+    private void postOrder(Node node) {
+        if (node == null) {
+            return;
+        }
+        postOrder(node.left);
+        postOrder(node.right);
+        System.out.println(node.e);
+    }
+
+    public void postOrderNormal() {
+        postOrderNormal(root);
+    }
+
+    /**
+     * 非递归后序遍历
+     * 后序：左 -> 右-> 根，我们可以把后序当作：根 -> 右-> 左，再反转一下
+     * @param node 根节点
+     */
+    private void postOrderNormal(Node node) {
+        if (node == null) {
+            return;
+        }
+        final List<E> list = new ArrayList<>();
+        final Stack<Node> q = new Stack<>();
+        q.add(node);
+        while (!q.isEmpty()) {
+            final Node pop = q.pop();
+            list.add(pop.e);
+            if(pop.left!=null){
+                q.add(pop.left);
+            }
+            if(pop.right!=null){
+                q.add(pop.right);
+            }
+        }
+        Collections.reverse(list);
+        System.out.println(list);
+    }
+
+
+    public void preOrderNormal() {
+        preOrderNormal(root);
+    }
+
+    /**
+     * 非递归前序遍历
+     *
+     * @param node 根节点
+     */
+    private void preOrderNormal(Node node) {
+        if (node == null) {
+            return;
+        }
+        final Stack<Node> q = new Stack<>();
+        q.add(node);
+        while (!q.isEmpty()) {
+            final Node pop = q.pop();
+            System.out.println(pop.e);
+            if (node.right != null) {
+                q.add(node.right);
+            }
+            if (node.left != null) {
+                q.add(node.left);
+            }
+        }
+
+    }
+
+    /**
+     * 非递归中序遍历
+     *
+     * @param node 根节点
+     */
+    private void inOrderNormal(Node node) {
+        if (node == null) {
+            return;
+        }
+        // 使用栈来帮助遍历
+        final Stack<Node> q = new Stack<>();
+        q.add(node);
+        while (!q.isEmpty()) {
+            // 左子树不为空，将左子节点加入栈，并向左子树前进
+            if (node.left != null) {
+                q.add(node.left);
+                node = node.left;
+            } else {
+                // 遍历并移除节点
+                final Node pop = q.pop();
+                System.out.println(pop.e);
+                // 如果有右子节点，将右子节点加入到栈里
+                if (pop.right != null) {
+                    q.add(pop.right);
+                }
+            }
+        }
     }
 
     /**
@@ -278,6 +429,18 @@ public class BST<E extends Comparable<E>> {
 
             return successor;
         }
+
+
+    }
+
+
+    public static void main(String[] args) {
+        final BST<Integer> bst = new BST<>();
+        bst.add(6);
+        bst.add(5);
+        bst.add(7);
+        bst.add(4);
+        bst.postOrderNormal();
     }
 
 }
